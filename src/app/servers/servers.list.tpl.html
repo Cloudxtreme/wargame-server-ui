@@ -1,0 +1,26 @@
+<div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>IP Address</th>
+        <th>Port</th>
+        <th>Rcon Port</th>
+        <th>Rcon Password</th>
+        <th>Server Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="server in servers.servers">
+        <td><a ui-sref="servers.detail({serverId: server.id})" ng-bind="server.name"></a></td>
+        <td ng-bind="server.ip"></td>
+        <td ng-bind="server.port"></td>
+        <td ng-bind="server.rconPort"></td>
+        <td ng-bind="server.rconPassword"></td>
+        <td ng-bind="server.serverName"></td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
