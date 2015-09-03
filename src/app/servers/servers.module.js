@@ -2,5 +2,6 @@
 
 angular.module('app.servers', [
   'ngResource',
-  'ui.router'
+  'ui.router',
+  'app.common'
 ]);

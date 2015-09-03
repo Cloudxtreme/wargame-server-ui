@@ -33,6 +33,21 @@ function ServersConfig($stateProvider) {
       resolve: {
         serverResolve: function($stateParams, Servers) {
           return Servers.get({serverId: $stateParams.serverId}).$promise;
+        },
+        mapsResolve: function(Maps) {
+          return Maps.query().$promise;
+        },
+        incomeRatesResolve: function(IncomeRates) {
+          return IncomeRates.query().$promise;
+        },
+        oppositionModesResolve: function(OppositionModes) {
+          return OppositionModes.query().$promise;
+        },
+        teamSizesResolve: function(TeamSizes) {
+          return TeamSizes.query().$promise;
+        },
+        victoryConditionsResolve: function (VictoryConditions) {
+          return VictoryConditions.query().$promise;
         }
       }
     })
