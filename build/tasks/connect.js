@@ -6,11 +6,11 @@
 module.exports = {
   proxies: [{
     context: '/api',
-    host: 'wargame.kwap.us',
-    port: 80,
+    host: 'localhost',
+    port: 8080,
     changeOrigin: true,
     headers: {
-       host: 'wargame.kwap.us'
+       host: 'localhost'
     }
   }],
 
