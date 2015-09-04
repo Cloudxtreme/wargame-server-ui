@@ -1,3 +1,149 @@
-<div>
-  Server Details
+
+<div class="panel panel-default">
+  
+  <div class="panel-heading">
+    <h3 class="panel-title" ng-bind="serverDetails.server.name"></h3>
+  </div>
+  
+  <div class="panel-body">
+    <div class="container-fluid">
+      
+      <div class="row">
+        <div class="col-md-8">
+          <form class="form-horizontal">
+          
+            <div class="form-group">
+              <label for="serverName" class="col-sm-3 control-label">Server Name</label>
+              <div class="col-sm-9">
+                <input 
+                      type="text" 
+                      class="form-control" 
+                      id="serverName" 
+                      ng-model="serverDetails.server.serverName" 
+                      ng-model-options="{ updateOn: 'blur' }"
+                      ng-change="serverDetails.updateServerName()"
+                      placeholder="Server Name" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="map" class="col-sm-3 control-label">Map</label>
+              <div class="col-sm-9">
+                <ui-select theme="bootstrap" ng-model="serverDetails.server.map" on-select="serverDetails.updateMap()">
+                  <ui-select-match placeholder="Select or search for a map...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="map in serverDetails.maps | excludeNull | filter: $select.search">
+                      <div ng-bind-html="map.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="serverName" class="col-sm-3 control-label">Victory Condition</label>
+              <div class="col-sm-9">
+                <ui-select theme="bootstrap" ng-model="serverDetails.server.victoryCondition" on-select="">
+                  <ui-select-match placeholder="Select or search for an Victory Condition...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="condition in serverDetails.victoryConditions | excludeNull | filter: $select.search">
+                      <span ng-bind-html="condition.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="serverName" class="col-sm-3 control-label">Opposition Mode</label>
+              <div class="col-sm-9">
+                <ui-select theme="bootstrap" ng-model="serverDetails.server.oppositionMode" on-select="">
+                  <ui-select-match placeholder="Select or search for an Opposition Mode...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="mode in serverDetails.oppositionModes | excludeNull | filter: $select.search">
+                      <span ng-bind-html="mode.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="serverName" class="col-sm-3 control-label">Team Size</label>
+              <div class="col-sm-9">
+                <ui-select theme="bootstrap" ng-model="serverDetails.server.teamSize" on-select="">
+                  <ui-select-match placeholder="Select or search for a Team Size...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="size in serverDetails.teamSizes | excludeNull | filter: $select.search">
+                      <span ng-bind-html="size.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="timeLimit" class="col-sm-3 control-label">Time Limit</label>
+              <div class="col-sm-9">
+                <input 
+                      type="number" 
+                      class="form-control" 
+                      id="timeLimit" 
+                      ng-model="serverDetails.server.timeLimit" 
+                      ng-model-options="{ updateOn: 'blur' }"
+                      min="0"
+                      placeholder="Time Limit" />
+                <p class="help-block">Time is in minutes. Use 0 for no limit.</p>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="startingPoints" class="col-sm-3 control-label">Starting Points</label>
+              <div class="col-sm-9">
+                <input 
+                      type="number" 
+                      class="form-control" 
+                      id="startingPoints" 
+                      ng-model="serverDetails.server.initialMoney"
+                      ng-model-options="{ updateOn: 'blur' }"
+                      min="0"
+                      placeholder="Starting Points" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="victoryPoints" class="col-sm-3 control-label">Victory Points</label>
+              <div class="col-sm-9">
+                <input 
+                      type="number" 
+                      class="form-control" 
+                      id="victoryPoints" 
+                      ng-model="serverDetails.server.scoreLimit"
+                      ng-model-options="{ updateOn: 'blur' }"
+                      min="0"
+                      placeholder="Victory Points" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="serverName" class="col-sm-3 control-label">Income Rate</label>
+              <div class="col-sm-9">
+                <ui-select theme="bootstrap" ng-model="serverDetails.server.incomeRate" on-select="">
+                  <ui-select-match placeholder="Select or search for an Income Rate...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="rate in serverDetails.incomeRates | excludeNull | filter: $select.search">
+                      <span ng-bind-html="rate.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-3">
+          <button type="button" class="btn btn-success">Launch Game</button>
+          <button type="button" class="btn btn-danger">Cancel Launch</button>
+        </div>
+      </div>
+      
+      <div class="row">
+        <pre ng-bind="serverDetails.server | json"></pre>  
+      </div>
+      
+    </div>
+  </div>
 </div>

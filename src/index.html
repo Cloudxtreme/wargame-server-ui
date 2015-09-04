@@ -44,7 +44,12 @@
 
     <div class="container">
       <span us-spinner spinner-key="loading"></span>
-      
+      <alert 
+          ng-repeat="alert in app.alerts" 
+          type="{{alert.type}}" 
+          close="app.closeAlert($index)" 
+          dismiss-on-timeout="{{alert.timeout}}"
+          template-url="common/alerts.template.html">{{alert.msg}}</alert>
       <div ui-view></div>
     </div>
 

@@ -13,6 +13,7 @@
     "angular-touch": "^1.4.3",
     "angular-ui-bootstrap": "^0.13.0",
     "angular-ui-router": "^0.2.15",
+    "angular-ui-select": "^0.12.100",
     "autoprefixer-core": "~3.1.2",
     "bootstrap": "^3.x",
     "grunt": "^0.4.5",

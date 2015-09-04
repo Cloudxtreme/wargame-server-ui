@@ -3,6 +3,8 @@
 angular.module('app', [
   'ui.bootstrap',
 	'ui.router',
+  'ui.select',
+  'ngSanitize',
   'angularSpinner',
   'app.common',
   'app.errors',

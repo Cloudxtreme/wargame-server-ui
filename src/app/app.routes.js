@@ -3,12 +3,10 @@
 angular.module('app')
 	.config(appConfig);
 	
-function appConfig($urlRouterProvider /*, $stateProvider, $locationProvider, $httpProvider*/) {
+function appConfig($urlRouterProvider) {
   
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise('/');
-  
-  
   
   
 	//removes # from URL

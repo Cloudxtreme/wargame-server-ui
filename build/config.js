@@ -23,11 +23,13 @@ module.exports = {
           'node_modules/angular-touch/angular-touch.js',
           'node_modules/angular-ui-bootstrap/ui-bootstrap.js',
           'node_modules/angular-ui-router/release/angular-ui-router.js',
+          'node_modules/angular-ui-select/select.js',
           'node_modules/spin.js/spin.js',
           'node_modules/angular-spinner/angular-spinner.js'
         ],
         css: [
-            'node_modules/bootstrap/dist/css/bootstrap.css'
+            'node_modules/bootstrap/dist/css/bootstrap.css',
+            'node_modules/angular-ui-select/select.css'
         ],
         // files in html/images will not be flattened or minified
         html: [],
