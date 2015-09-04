@@ -24,88 +24,49 @@ function ServerDetailsController(
   vm.teamSizes = teamSizesResolve;
   vm.victoryConditions = victoryConditionsResolve;
   
-  vm.updateServerName = updateServerName;
-  vm.updateMap = updateMap;
-  vm.updateVictoryCondition = updateVictoryCondition;
-  vm.updateOppositionMode = updateOppositionMode;
-  vm.updateTeamSize = updateTeamSize;
-  vm.updateTimeLimit = updateTimeLimit;
-  vm.updateStartingPoints = updateStartingPoints;
-  vm.updateVictoryPoints = updateVictoryPoints;
-  vm.updateIncomeRate = updateIncomeRate;
+  vm.updateServer = updateServer;
   vm.launchGame = launchGame;
-  vm.cancelLaunch = cancelLaunch;
   
   
-  function updateServerName() {
+  function updateServer(data, fieldName) {
     usSpinnerService.spin('loading');
-    Servers.update(
-      {serverId: vm.server.id}, 
-      { serverName: vm.server.serverName })
-      
-    .$promise.then(function(response) {
-      Alerts.addAlert('Successfully updated Server Name', 'success', 2000);
-      usSpinnerService.stop('loading');
-      
-    }, function(response) {
-      $log.error(response);
-      usSpinnerService.stop('loading');
-      Alerts.addAlert('Error updating Server Name', 'error');
-    });
-  }
-  
-  function updateMap() {
-    usSpinnerService.spin('loading');
-    Servers.update(
-      {serverId: vm.server.id}, 
-      { map: vm.server.map.serverId })
-    
-    .$promise.then(function(response) {
+    Servers.update({serverId: vm.server.id}, data).$promise
+    .then(function(response) {
       // Success
-      Alerts.addAlert('Successfully updated Map', 'success', 2000);
+      Alerts.addAlert('Successfully updated ' + fieldName, 'success', 2000);
       usSpinnerService.stop('loading');
     
     }, function(response) {
       // Failure
       $log.error(response);
       usSpinnerService.stop('loading');
-      Alerts.addAlert('Error updating Map', 'error');
+      Alerts.addAlert('Error updating ' + fieldName, 'error');
     });
   }
   
-  function updateVictoryCondition() {
+  function launchGame(cancel) {
+    usSpinnerService.spin('loading');
+    Servers.update({serverId: vm.server.id, launch: cancel}).$promise
+    .then(function(response) {
+      // Success
+      if(cancel) {
+        Alerts.addAlert('Successfully cancelled launche', 'success', 2000);
+      } else {
+        Alerts.addAlert('Successfully launched game', 'success', 2000);
+      }
+      
+      usSpinnerService.stop('loading');
     
-  }
-  
-  function updateOppositionMode() {
-    
-  }
-  
-  function updateTeamSize() {
-    
-  }
-  
-  function updateTimeLimit() {
-    
-  }
-  
-  function updateStartingPoints() {
-    
-  }
-  
-  function updateVictoryPoints() {
-    
-  }
-  
-  function updateIncomeRate() {
-    
-  }
-  
-  function launchGame() {
-    
-  }
-  
-  function cancelLaunch() {
-    
+    }, function(response) {
+      // Failure
+      $log.error(response);
+      if(cancel) {
+        Alerts.addAlert('Error cancelling launch', 'error');
+      } else {
+        Alerts.addAlert('Error launching game', 'error');
+      }
+      
+      usSpinnerService.stop('loading');
+    });
   }
 }

@@ -5,6 +5,7 @@ angular.module('app.servers')
   
 function ServerService($resource, API) {
   return $resource(API + '/servers/:serverId', {}, {
-    'update': { method: 'PATCH' }
+    'update': { method: 'PATCH' },
+    'launch': { method: 'POST' }
   });
 }
